@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3>Rejestracja</h3></div>
+        <div id="content">
+            <div id="form">
+                <form th:action="@{/register}" method="POST" th:object="${user}">
+                    <div id="login">
+                        <label>
+                            Login:
+                            <input type="text" th:field="*{login}" />
+                        </label>
+                    </div>
+                    <div id="password">
+                        <label>
+                            Hasło:
+                            <input type="password" th:field="*{password}" />
+                        </label>
+                    </div>
+                    <div id="name">
+                        <label>
+                            Imię:
+                            <input type="text" th:field="*{name}" />
+                        </label>
+                    </div>
+                    <div id="lastname">
+                        <label>
+                            Nazwisko:
+                            <input type="text" th:field="*{surname}" />
+                        </label>
+                    </div>
+                    <div id="submit">
+                        <button type="submit">Zarejestruj</button>
+                    </div>
+
+                    <p class="alert" th:if="${registered} == 'user_exists'">Podany login jest zajęty.</p>
+                    <p class="alert" th:if="${registered} == true">Zarejestrowano pomyślnie!</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

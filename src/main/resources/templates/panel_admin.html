@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel admina</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3>Panel admina</h3></div>
+        <div id="content">
+            <ul class="menu">
+                <li><a th:href="@{/panel/admin/manageusers}">Zarządzaj użytkownikami</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

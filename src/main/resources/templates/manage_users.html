@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Zarządzaj użytkownikami</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/news.css}"/>
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3>Zarządzaj użytkownikami</h3></div>
+        <div id="content">
+            <div id="users">
+                <table>
+                    <tr>
+                        <th>Login</th>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Usuń</th>
+                    </tr>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.login}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.surname}"></td>
+                        <td th:if="${#authentication.getName()} != ${user.login}"><a th:href="'/panel/admin/manageusers/delete/' + ${user.id}">X</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <p class="alert" th:if="${user_delete} == 'deleted'">Użytkownik został usunięty.</p>
+            <p class="alert" th:if="${user_delete} == 'error'">Błąd.</p>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

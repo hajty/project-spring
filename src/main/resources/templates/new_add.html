@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj newsa</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3>Dodaj newsa</h3></div>
+        <div id="content">
+            <div id="form">
+                <form th:action="@{'/news/add'}" method="POST" th:object="${news}">
+                    <div id="title">
+                        <label>
+                            Tytuł:
+                            <input type="text" th:field="*{title}" />
+                        </label>
+                    </div>
+                    <div id="text">
+                        <label>
+                            Treść:
+                            <textarea rows="10" th:field="*{text}" ></textarea>
+                        </label>
+                    </div>
+                    <input type="hidden" name="author_name" th:value="${#authentication.getName()}"/>
+                    <div id="submit">
+                        <button type="submit">Dodaj newsa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

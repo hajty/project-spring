@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja newsa</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3>Edycja newsa</h3></div>
+        <div id="content">
+            <div id="form">
+                <form th:action="@{'/news/edit/id/'+${news.id}}" method="POST" th:object="${news}">
+                    <div id="title">
+                        <label>
+                            Tytuł:
+                            <input type="text" th:field="*{title}" th:value="*{title}"/>
+                        </label>
+                    </div>
+                    <div id="text">
+                        <label>
+                            Treść:
+                            <textarea rows="10" th:field="*{text}" th:value="*{text}"></textarea>
+                        </label>
+                    </div>
+                    <div id="submit">
+                        <button type="submit">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/news.css}"/>
+    <script th:src="@{/js/news.js}"></script>
+
+</head>
+<body>
+<div th:include="base :: up"></div>
+<div id="site_content">
+    <div th:include="base :: content"></div>
+    <div id="content_container">
+        <div id="content_header"><h3 th:text="${news.title}"></h3></div>
+        <div id="content">
+            <div id="new">
+                <div id="text" th:text="${news.text}">
+                    <br /><br />
+                </div>
+                <div id="author" th:text="'Autor: ' + ${author}">
+                </div>
+                <br/><br/>
+                <div id="button" sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{'/news/edit/id/' + ${news.id}}" class="button" id="edit">Edytuj</a>
+                    <a th:href="@{'/news/delete/id/' + ${news.id}}" class="button" id="delete">Usuń</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="base :: footer"></div>
+</body>
+</html>

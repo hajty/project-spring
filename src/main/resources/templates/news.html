@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/news.css}"/>
+</head>
+<body>
+    <div th:include="base :: up"></div>
+    <div id="site_content">
+        <div th:include="base :: content"></div>
+        <div id="content_container">
+            <div id="content_header"><h3>News</h3></div>
+            <div id="content">
+                <div id="news">
+                        <div id="new" th:each="neww: ${news}">
+                            <div id="title">
+                                <a th:href="@{'/news/id/' + ${neww.id}}" th:text="${neww.title}"></a>
+                            </div>
+                            <div id="text">
+                                <p th:text="${neww.text}"></p>
+                            </div>
+                        </div>
+                </div>
+                <div id="button" sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{'/news/add'}" class="button" id="add">Dodaj</a>
+                </div>
+                <th:block th:switch="${news_status}">
+                    <p class="alert" th:case="'added'">News został dodany.</p>
+                    <p class="alert" th:case="'updated'">News został zmieniony.</p>
+                    <p class="alert" th:case="'deleted'">News został usunięty.</p>
+                    <p class="alert" th:case="'error'">Błąd w usuwaniu newsa.</p>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <div th:include="base :: footer"></div>
+</body>
+</html>
